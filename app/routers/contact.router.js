@@ -3,12 +3,12 @@ const contacts = require('../controllers/contact.controller.js')
 
 const router = express.Router();
 
-router.route('/')
+router.route("/")
     .get(contacts.findAll)
     .post(contacts.create)
     .delete(contacts.delete);
 
-router.route('/favourite')
+router.route("/favourite")
     .get(contacts.findAllFavourite)
 
 router.route("/:id")
