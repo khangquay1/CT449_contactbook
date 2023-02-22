@@ -1,30 +1,3 @@
-// exports.create = (req, res) => {
-//     res.send({message: "create handler"});
-// };
-
-// exports.findAll = (req, res) => {
-//     res.send({message: "findAll handler"});
-// };
-
-// exports.findOne = (req, res) => {
-//     res.send({message: "findOne handler"});
-// };
-
-// exports.update = (req, res) => {
-//     res.send({message: "update handler"});
-// };
-
-// exports.delete = (req, res) => {
-//     res.send({message: "delete handler"});
-// };
-
-// exports.deleteAll = (req, res) => {
-//     res.send({message: "deleteAll handler"});
-// };
-
-// exports.findAllFavourite = (req, res) => {
-//     res.send({message: "findAllFavourite handler"});
-// };
 const ApiError = require("../api-error");
 const ContactService = require("../services/contact.service");
 const MongoDB = require("../utils/mongodb.util");
@@ -38,6 +11,7 @@ exports.create = async (req, res, next) => {
         const document = await contactService.create(req.body);
         return res.send(document);
     } catch (error) {
+        console.log(error);
         return next(
             new ApiError(500, "An error occurred while creating the contact")
         );
@@ -106,11 +80,11 @@ exports.delete =async (req, res, next) => {
     }
 };
 
-exports.findAllFavorite =async (req, res, next) => {
+exports.findAllFavourite =async (req, res, next) => {
     try {
         const contactService = new ContactService(MongoDB.client);
         const document = await contactService.findAllFavorite();
-        return res.send(documents);
+        return res.send(document);
     } catch(error){
         return next(new ApiError(500, "An error occurred while retrieving favorite contacts"));
     }
